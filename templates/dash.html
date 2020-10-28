@@ -1,0 +1,130 @@
+{% extends "index.html" %}
+{% load static %}
+
+{%block dash%}
+
+<div  id="res">{{response}}</div>
+
+    {% if userr.is_staff %}
+    <i><h1 style="margin:1em 0em 0em 1.2em;">Dashboard</h1></i>
+
+    <div class = "container" style="margin-top:1em;margin-left: 0.4em;" >  
+        <div class="row">
+            <div class="dash-list text-center col-md-2">
+            <h5>Total Courses</h5>
+            <div class="card card-body text-center">
+                {{total_courses}}
+            </div>
+        </div>
+        <div class="dash-list text-center col-md-2">
+            <h5>Total Students</h5>
+            <div class="card card-body text-center">
+                {{total_students}}
+            </div>
+        </div>
+        <div class="dash-list text-center col-md-2">
+            <h5>Total Enrollments</h5>
+            <div class="card card-body text-center">
+                {{total_enrolls}}
+            </div>
+        </div>
+        <div class="dash-list text-center col-md-2">
+            <h5>Active</h5>
+            <div class="card card-body text-center">
+                {{active}}
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class = "container-fluid" style="margin-top:1em;" >  
+    <div class="row">
+      <div class="dash-list col-md-3">
+        <h5>Courses:</h5>
+        <hr>
+        <div class="card card-body">
+          <a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_course'%}">Create Course</a>
+          <table class="table table-sm">
+            <tr>
+              <th>Date Created</th>
+              <th>Courses</th>
+            </tr>
+            {%for course in subjects%}
+              <tr>
+                <td>{{course.date_created}}</td>
+                <td>{{course.title}}</td>
+              </tr>
+            {%endfor%} 
+          </table>
+        </div>
+      </div>
+    
+      <div class="dash-list col-md-7">
+        <h5>Enrollments</h5>
+        <hr>
+        <div class="card card-body">
+          <table class="table table-sm">
+            <tr>
+             
+              <th>Name</th>
+              <th>Course</th>
+              <th>Date Modified</th>
+              <th>Status</th>
+              <th>Update</th>
+              <th>Remove</th>
+            </tr>
+            {%for enroll in enrolls%}
+            <tr>
+              
+              <td>{{enroll.student}}</td>
+              <td>{{enroll.subject}}</td>
+              <td>{{enroll.date_modified}}</td>
+              <td>{{enroll.status}}</td>
+              <td><a class="btn btn-info btn-sm" href="{% url 'update_enroll' enroll.id%}">Update</a></td>
+              <td><a class="btn btn-danger btn-sm" href="{% url 'remove_student' enroll.id %}">Remove</a></td>
+       
+            </tr>
+            {%endfor%} 
+            
+          </table>
+         
+        </div>
+      </div>
+    </div>
+    <a class="btn btn-info btn-sm" href="{% url 'student'%}">student</a>
+  </div>  
+  {%else%}
+  <i><h1 style="margin:1em 0em 0em 1.2em;">Profile</h1></i>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card" style="padding-top: 2%;padding-left: 1%;height: 110px;">
+          <a class="btn btn-outline-dark " href="{% url 'hp'%}"  style="font-family: cursive;width: max-content;"><i class="fas fa-home"></i>&nbsp;Home</a>
+          <h4 style="font-family: cursive;"><center>Courses Enrolled</center></h4>
+        </div>
+        <div class="dash-row">
+        <table class="table">
+          <tr>
+            <th></th>
+            <th>Course</th>
+            <th>Date Enrolled</th>
+            <th>Status</th>
+          </tr>
+          {% for enrcourse in stucourse_enrolls %}
+          <tr>
+					  <td><img class="row-image" src="{{enrcourse.subject.photo.url}}"></td>
+					  <td><p>{{enrcourse.subject.title}}</p></td>
+            <td><p>{{enrcourse.subject.date_created}}</p></td>
+            {% if enrcourse.status == 'Active' %}
+              <td><a class="btn btn-success " style="color: aliceblue;">{{enrcourse.status}}</a></td>
+            {%else%}
+              <td><a class="btn btn-danger " style="color: aliceblue;">{{enrcourse.status}}</a></td>
+            {%endif%}
+            <td><a class="btn btn-danger btn-sm" href="{% url 'remove_enroll' enrcourse.id %}">Remove</a></td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      </div>
+    </div>
+  {% endif %}
+
+{%endblock%}

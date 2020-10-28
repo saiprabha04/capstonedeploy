@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Log-in{% endblock %}
+<head>
+</head>
+<body>
+
+{% block content %}
+<body style="background-image: url('/static/imgs/log.jpg'); background-size:100%">
+<div class = "container" > 
+    <div class="card col-md-4 offset-md-4">
+        <h1 class="title">Log-in</h1>
+      
+        <form  method="post">
+            
+            {% csrf_token %}
+            Username<input type="text" name="username" placeholder="username" value="{{un}}" required=""><br>
+            Password<input type="password" name="password" placeholder="password" value="{{pw}}" required=""><br>
+            
+            <input type="checkbox" name="check" id="check" style="width: 0.6em;height:0.6em" >  
+            <label for="check"> Remember me</label>
+            <br><input type="hidden" name="next"  value="{{ next }}" />
+            <p><input type="submit" value="Log-in"></p>
+            <a href="{%url 'signup'%}" style="text-align: start;">New to Vidya?</a>
+            <a href="{%url 'password_reset'%}" style="margin-left: 7em;">Forgot password</a>
+
+        </form>
+    </div>  
+    
+</div>
+<div>
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {%endfor%}
+</div>
+</body>
+{% endblock %}  

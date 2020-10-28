@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block content%}
+<body style="background-image: url('/static/imgs/couses.jpg');background-size: 110%;">
+<div class="jumbotron jumbotron-fluid" style="height : 10em;background-image: url('/static/imgs/contact.jpg'); background-size: 100%;">
+    <font style="float: right;margin-right: 9em;font-family: cursive;"><i><h1>Courses</h1></i></font>
+</div>
+    <div class="row">
+    {% for s in subjects %}
+        <div class="course-list col-md-3 offset-md-1">
+                <a href="{% url 'contents' s.id %}">
+                   <img src ="{{s.photo.url}}">
+                   {{ s.title }} courses
+                </a>
+                <p style="text-align: right;"><button data-s="{{s.id}}" class="btn btn-warning btn-sm enroll_stucor"> Enroll</button></p>
+
+              
+
+        </div>
+    {% endfor %}
+    </div>
+    <script src="{%static 'js/base.js'%}"></script>
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
+</body>
+{%endblock%}
+
+

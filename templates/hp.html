@@ -1,0 +1,59 @@
+{% extends "base.html" %} {%load static%} {%block content%}
+
+<body>
+    <div id="Banner">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <span class="titl"><p>Best Learning Platform</p></span>
+                    <p>The best online course platforms give the freedom to spend more time teaching your students and automating your sales processes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background-image:repeating-linear-gradient(to left, rgb(248, 185, 185),rgb(188, 188, 221));height: 400px;">
+        <div class="container">
+            <div class="row">
+                <div class="course-list col-md-3 offset-md-1" style="border-radius: 0;margin-top: 70px;height: 200px;">
+                    <img src={{bestsellr.photo.url}} style="margin-top: 15px;width: 255px;height: 170px;" />
+                </div>
+                <div style="margin-top: 4.25em;">
+                    <p>
+                        <font size="5px" style="background-color:rgb(172, 235, 172);box-shadow:0px 0px 10px 1px rgb(63, 63, 63);margin-left: 0.5em;">
+                            <b>Best Selling</b></font>
+                    </p>
+                </div>
+                <div class="col-md-3 offset-md-3" style="margin-top: 150px;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color: rgb(230, 255, 240);height: 450px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <p>
+                        <h3 style="margin-top: 50px;color:rgb(105, 105, 105) ;text-shadow: black;font-size:50px;">Let's Burst Some Courses</h3>
+                    </p>
+                    <hr><br><br>
+                    <p style="font-size: larger;margin-top:1.5em ;">Vidhya brings you the power of community that comprises of data practitioners, thought leaders and corporates leveraging data to generate value for their businesses. Learn from the resources developed by experts at Vidhya, participate
+                        in hackathons, master your skills with latest data science problems and showcase your skills to the world</p>
+                </div>
+                <div class="col" style="margin-top:13em ;margin-left: 5em;">
+                    <a class="btn btn-outline-dark " href="{% url 'courses' %}" style="font-family: cursive;cursor: pointer;font-size: 20px;"><i class="fa fa-compass"></i>&nbsp;Explore</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background-color: rgb(140, 219, 255);text-align: center;height: 50px;font-size: medium;">
+        <p>&nbsp;&nbsp;&copy; 2020 Vidya | Require any help? Please contact <a href="mailto: kamal.karre@st.niituniversity.in"> kamal.karre@st.niituniversity.in</a> | ph: 8247707332 |
+            <a href="#"><i class="fa fa-facebook"></i></a> |
+            <a href="#"><i class="fa fa-twitter"></i></a> | . . . .
+        </p>
+    </div>
+    <script src="{% static '/js/base.js'%}"></script>
+</body>
+{%endblock%}

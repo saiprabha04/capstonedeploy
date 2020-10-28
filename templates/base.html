@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Capstone{% endblock %}</title>
+  <link href="{% static 'css/base.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/d0d12d717f.js" crossorigin="anonymous"></script>
+</head>
+<body background="{%static 'imgs/background.jpg'%}" sonload="onLT()">
+  <div class="header">
+    <a href="{%url 'hp'%}" class="logo"><img src="{% static 'imgs/Logo.png' %}" width="84" height="50"></a>
+    <div class="header-center">
+      <a href="{% url 'courses' %}"><img src="{% static 'imgs/menu.png' %}" width="20" height="20"></a>
+      <div style="float: left; margin-top: 15px;">
+        <center>All Courses</center>
+      </div>
+    </div>
+    <form method="GET" action="/search">
+      <div class="Search-box">
+        <div class="row">
+          <div class="col">
+              <input type="text" placeholder="Search......" style="font-size: 14px;text-align: start;height: 43px;border-radius: 4px;" name="query">
+          </div>
+          <div class="col">
+              <button class="btn-info" type="submit" style="font-size: 14px;padding: 10px;border-radius: 4px;">Search</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="header-right">
+      {% if request.user.is_authenticated %}
+        {% if request.user.is_staff %}
+          <a href="{%url 'home'%}" style="visibility: visible">DashBoard</a>
+        {% else %}
+          <a href="{%url 'home'%}" style="visibility: visible">Profile</a>  
+        {% endif %}  
+      {%else%}
+        <a href="{%url 'home'%}" style="visibility: hidden"></a>
+      {%endif%}
+      <a href="{%url 'contact'%}">Contact</a>
+      <a href="{% url 'about'%}">About</a>
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'logout' %}">Sign out</a>
+        {% else %}
+          <a href="{% url 'login' %}">Sign in</a>
+          <a href="{% url 'signup' %}"><button class="button" style="background-color: rgb(0, 255, 157);">SignUp</button></a>
+        {% endif %}     
+    </div>
+  </div>
+
+  <div id="content">    
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
+
+

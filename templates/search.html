@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block content%}
+<body style="background-image:linear-gradient(to right,rgb(228, 220, 220),rgb(211, 248, 230))">
+<div class="jumbotron" style="height : 5em">
+    <font style="font-family: cursive;"><h3>Search Results</h3></i></font>
+</div>
+>
+{% if query != "" %}
+    <div class="row">
+    {% for s in search_content %}
+        <div class="course-list col-md-3 offset-md-1">
+                <a href="#">
+                   <img src ="{{s.photo.url}}">
+                   {{ s.title }} courses
+                </a>
+                <p style="text-align: right;"><button data-s="{{s.id}}" class="btn btn-warning btn-sm enroll_stucor"> Enroll</button></p>
+        </div>
+    {% endfor %}
+    </div>
+    <script src="{%static 'js/base.js'%}"></script>
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+    </script>
+</body>
+{%else%}
+<div class="row">
+    <div class="col-md-6 offset-md-2">
+        <h3>Did not match any Courses</h3>
+    </div>
+</div>
+{%endif%}
+{%endblock%}
+
+

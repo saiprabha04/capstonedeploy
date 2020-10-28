@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body style="background-image: url('/static/imgs/couses.jpg'); background-size: 100%;">
+<div class="container card col-md-5" style="margin-top:5em;">
+<form method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type="submit" value="Submit"> 
+</form>
+</div>
+</body>
+{%endblock%}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body onload="onLT(), resp()">
+ 
+{%block dash%}
+<a href="{% url 'home' %}"> Home</a>
+{%endblock%}
+
+<div class="sb-sidebar">
+  <button class="sb-close" onclick="toggleNav()">&#9776</button><br><br>		
+  <div id="sb-top-bar">
+      <div id="sb-title">
+          <span><font size="10"><center><b>Capstone-ELearning</b></center></font></span>
+      </div>
+  </div>
+  <center><i><a  href="https://github.com/Kamal-prog-code/Capstone-ELearning">SOURCE CODE</a></i></center>
+  <br>
+  <div id="sb-sidebar-body">
+    <center><i><p>Learn and Code</p></i></center>
+      <a  href="#">
+          <img src="{%static 'imgs/Django.jpg'%}">
+      </a>
+      <p class="blink"><a href="{%url 'password_change'%}" style="color: beige;">Change password</a></p>
+  </div>
+</div>
+<script src="{%static 'js/base.js'%}"></script>
+</body>
+{% endblock %}
